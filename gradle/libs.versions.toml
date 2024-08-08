@@ -1,7 +1,7 @@
 [versions]
 ant = "1.10.14"
 apiguardian = "1.1.2"
-asciidoctorj-pdf = "2.3.17"
+asciidoctorj-pdf = "2.3.18"
 asciidoctor-plugins = "4.0.3" # Check if workaround in documentation.gradle.kts can be removed when upgrading
 assertj = "3.26.3"
 bnd = "7.0.0"
@@ -33,7 +33,7 @@ classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.174" }
 commons-io = { module = "commons-io:commons-io", version = "2.16.1" }
 groovy4 = { module = "org.apache.groovy:groovy", version = "4.0.22" }
 groovy2-bom = { module = "org.codehaus.groovy:groovy-bom", version = "2.5.21" }
-hamcrest = { module = "org.hamcrest:hamcrest", version = "2.2" }
+hamcrest = { module = "org.hamcrest:hamcrest", version = "3.0" }
 jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jfrPolyfill = { module = "org.gradle.jfr.polyfill:jfr-polyfill", version = "1.0.2" }
@@ -81,13 +81,13 @@ asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor-pl
 bnd = { id = "biz.aQute.bnd", version.ref = "bnd" }
 buildParameters = { id = "org.gradlex.build-parameters", version = "1.4.4" }
 commonCustomUserData = { id = "com.gradle.common-custom-user-data-gradle-plugin", version = "2.0.2" }
-develocity = { id = "com.gradle.develocity", version = "3.17.5" }
+develocity = { id = "com.gradle.develocity", version = "3.17.6" }
 foojayResolver = { id = "org.gradle.toolchains.foojay-resolver", version = "0.8.0" }
 gitPublish = { id = "org.ajoberstar.git-publish", version = "4.2.2" }
 jmh = { id = "me.champeau.jmh", version = "0.7.2" }
 nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0" }
 nohttp = { id = "io.spring.nohttp", version = "0.0.11" }
 plantuml = { id = "io.freefair.plantuml", version = "8.6" }
-shadow = { id = "io.github.goooler.shadow", version = "8.1.8" }
+shadow = { id = "com.gradleup.shadow", version = "8.3.0" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA1" }
 versions = { id = "com.github.ben-manes.versions", version = "0.51.0" }

@@ -57,6 +57,7 @@ import org.junit.jupiter.api.io.TempDirFactory;
 import org.junit.jupiter.engine.config.EnumConfigurationParameterConverter;
 import org.junit.jupiter.engine.config.JupiterConfiguration;
 import org.junit.platform.commons.JUnitException;
+import org.junit.platform.commons.PreconditionViolationException;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.junit.platform.commons.util.ExceptionUtils;
@@ -284,12 +285,17 @@ class TempDirectory implements BeforeAllCallback, BeforeEachCallback, ParameterR
 		private final CleanupMode cleanupMode;
 		private final ExtensionContext extensionContext;
 
-		CloseablePath(TempDirFactory factory, CleanupMode cleanupMode, AnnotatedElementContext elementContext,
+		private CloseablePath(TempDirFactory factory, CleanupMode cleanupMode, AnnotatedElementContext elementContext,
 				ExtensionContext extensionContext) throws Exception {
 			this.dir = factory.createTempDirectory(elementContext, extensionContext);
 			this.factory = factory;
 			this.cleanupMode = cleanupMode;
 			this.extensionContext = extensionContext;
+
+			if (dir == null || !Files.isDirectory(dir)) {
+				close();
+				throw new PreconditionViolationException("temp directory must be a directory");
+			}
 		}
 
 		Path get() {
@@ -319,7 +325,7 @@ class TempDirectory implements BeforeAllCallback, BeforeEachCallback, ParameterR
 
 		private SortedMap<Path, IOException> deleteAllFilesAndDirectories(FileOperations fileOperations)
 				throws IOException {
-			if (Files.notExists(dir)) {
+			if (dir == null || Files.notExists(dir)) {
 				return Collections.emptySortedMap();
 			}
 

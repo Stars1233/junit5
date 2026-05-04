@@ -5,6 +5,8 @@ on:
     - cron: '13 7 * * 6'
   workflow_dispatch:
 
+permissions: {}
+
 concurrency:
   group: lock-resolved-issues
 

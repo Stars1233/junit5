@@ -10,13 +10,10 @@
 
 package org.junit.jupiter.engine.execution;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.extension.ParameterContext;
-import org.junit.platform.commons.util.AnnotationUtils;
 import org.junit.platform.commons.util.Preconditions;
 import org.junit.platform.commons.util.ToStringBuilder;
 
@@ -44,21 +41,6 @@ record DefaultParameterContext(Parameter parameter, int index, Optional<Object> 
 	@Override
 	public Optional<Object> getTarget() {
 		return this.target;
-	}
-
-	@Override
-	public boolean isAnnotated(Class<? extends Annotation> annotationType) {
-		return AnnotationUtils.isAnnotated(this.parameter, this.index, annotationType);
-	}
-
-	@Override
-	public <A extends Annotation> Optional<A> findAnnotation(Class<A> annotationType) {
-		return AnnotationUtils.findAnnotation(this.parameter, this.index, annotationType);
-	}
-
-	@Override
-	public <A extends Annotation> List<A> findRepeatableAnnotations(Class<A> annotationType) {
-		return AnnotationUtils.findRepeatableAnnotations(this.parameter, this.index, annotationType);
 	}
 
 	@Override

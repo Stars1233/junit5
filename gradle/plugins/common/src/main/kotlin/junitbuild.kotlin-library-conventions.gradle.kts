@@ -29,3 +29,14 @@ tasks.withType<KotlinCompile>().configureEach {
 tasks.named<KotlinCompile>("compileTestKotlin") {
 	compilerOptions.jvmTarget = javaLibraryExtension.testJavaVersion.map { JvmTarget.fromTarget(it.toString()) }
 }
+
+configurations.named { it == "kotlinBouncyCastleConfiguration" }.configureEach {
+	resolutionStrategy {
+		eachDependency {
+			if (requested.group == "org.bouncycastle") {
+				useVersion("1.84")
+				because("Workaround for CVE-2026-3505 et al (used by kotlin plugin)")
+			}
+		}
+	}
+}
